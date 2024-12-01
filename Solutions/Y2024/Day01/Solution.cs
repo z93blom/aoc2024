@@ -3,7 +3,10 @@ using AdventOfCode.Utilities;
 
 namespace AdventOfCode.Solutions.Y2024.Day01;
 
-class Solution : ISolver
+[RegisterKeyedTransient("2024-01")] partial class Solution { }
+[RegisterTransient()] partial class Solution { }
+
+partial class Solution : ISolver
 {
     public int Year => 2024;
     public int Day => 1;

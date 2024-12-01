@@ -1,20 +1,15 @@
 {
   "profiles": {
     "usage": {
-      "commandName": "Project",
-      "commandLineArgs": ""
+      "commandName": "Project"
     },
     "solve today": {
       "commandName": "Project",
-      "commandLineArgs": "last"
+      "commandLineArgs": "solve today"
     },
     "update today": {
       "commandName": "Project",
-      "commandLineArgs": "update last"
-    },
-    "solve specific": {
-      "commandName": "Project",
-      "commandLineArgs": ""
+      "commandLineArgs": "update today"
     }
   }
 }

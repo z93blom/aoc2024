@@ -10,8 +10,11 @@ public class SolutionTemplateGenerator {
                 using AdventOfCode.Utilities;
 
                 namespace AdventOfCode.Solutions.Y{{problem.Year}}.Day{{problem.Day:00}};
+                
+                [RegisterKeyedTransient("{{problem.Year}}-{{problem.Day:00}}")] partial class Solution { }
+                [RegisterTransient()] partial class Solution { }
 
-                class Solution : ISolver
+                partial class Solution : ISolver
                 {
                     public int Year => {{problem.Year}};
                     public int Day => {{problem.Day}};

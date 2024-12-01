@@ -24,23 +24,21 @@ To run the project:
 2. Clone the repo
 3. Get help with `dotnet run`
 ```
-
 Usage: dotnet run [arguments]
 Supported arguments:
 
- [year]-[day|all] Solve the specified problems
- [year]                Solve the whole year
- last                  Solve the last problem
- all                   Solve everything
- list                  List possible solvers
+solve [year]-[day]    Solve the specified problems
+solve [year]          Solve the whole year
+solve today           Solve today's problem (only available during event).
 
 To start working on new problems:
 
- update [year]-[day]   Prepares a folder for the given day, updates the input,
-                       the readme and creates a solution template.
- update last           Same as above, but for the current day. Works in December only.
+update [year]-[day]   Prepares a folder for the given day, updates the input, 
+					the readme and creates a solution template.
+update today          Same as above, but for the current day. (only available during event). 
 
 Useful commands during december:
-  dotnet run update last
-  dotnet run last
+dotnet run update today
+dotnet run solve today 
+
 ```
