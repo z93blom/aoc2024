@@ -6,7 +6,7 @@ namespace AdventOfCode.Utilities;
 
 public static class StringExtensions
 {
-    private static readonly Regex _intRegex = new(@"([+-]?\d+)", RegexOptions.Compiled);
+    private static readonly Regex IntRegex = new(@"([+-]?\d+)", RegexOptions.Compiled);
 
     private static readonly string[] LineEndings = { "\r\n", "\r", "\n" };
     private static readonly string[] DoubleLineEndings = { "\r\n\r\n", "\r\r", "\n\n" };
@@ -28,13 +28,13 @@ public static class StringExtensions
 
     public static IEnumerable<int> Integers(this string s)
     {
-        var matches = _intRegex.Matches(s);
+        var matches = IntRegex.Matches(s);
         return matches.SelectMany(m => m.Captures.Select(v => int.Parse(v.Value)));
     }
     
     public static IEnumerable<long> Longs(this string s)
     {
-        var matches = _intRegex.Matches(s);
+        var matches = IntRegex.Matches(s);
         return matches.SelectMany(m => m.Captures.Select(v => long.Parse(v.Value)));
     }
 
@@ -148,7 +148,7 @@ public static class StringExtensions
         return match.Success;
     }
 
-    public static IEnumerable<Match> Matches(this string s, string pattern)
+    public static IEnumerable<Match> Matches(this string s, [StringSyntax(StringSyntaxAttribute.Regex)] string pattern)
     {
         var collection = Regex.Matches(s, pattern);
         return collection;
@@ -171,7 +171,7 @@ public static class StringExtensions
 
 
     /// <summary>
-    /// Returns the groups from a regex (the values inside of captured parenthesis), applied to each string in turn.
+    /// Returns the groups from a regex (the values inside captured parenthesis), applied to each string in turn.
     /// </summary>
     /// <param name="strings">The list of strings to apply the regex pattern to.</param>
     /// <param name="pattern">The regular expression pattern.</param>
@@ -218,7 +218,7 @@ public static class StringExtensions
     /// Removes all characters from a string.
     /// </summary>
     /// <param name="s">The string being changed.</param>
-    /// <param name="c">A string containing all the characters to be removed..</param>
+    /// <param name="remove">A string containing all the characters to be removed.</param>
     /// <returns>The resulting string.</returns>
     public static string RemoveAllChars(this string s, string remove)
     {
