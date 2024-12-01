@@ -1,5 +1,9 @@
 {
   "profiles": {
+    "usage": {
+      "commandName": "Project",
+      "commandLineArgs": ""
+    },
     "solve today": {
       "commandName": "Project",
       "commandLineArgs": "last"
