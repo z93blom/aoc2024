@@ -7,9 +7,10 @@ class SplashScreenImpl : SplashScreen
     {
         WriteFiglet("Advent of code 2024", Spectre.Console.Color.Yellow);
         Write(0xcccccc, "                  .--'");
-        Write(0x888888, "~ ~ ~");
+        Write(0xe3b585, "~ ~ ~");
         Write(0xcccccc, "|        .-' ");
-        Write(0x888888, "*       \\  /     ");
+        Write(0xffff66, "*       ");
+        Write(0x886655, "\\  /     ");
         Write(0xcccccc, "'-.  ");
         Write(0x888888, " 1 ");
         Write(0xffff66, "**\n           ");
