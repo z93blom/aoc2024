@@ -10,9 +10,9 @@ namespace AdventOfCode.Solutions.Y2024.Day03;
 partial class Solution : ISolver
 {
 
-    //[GeneratedRegex(@"((mul)\(\d{1,3},\d{1,3}\))|(do\(\))|(don\'t\(\))")]
-    //private static partial Regex MulExpressions();
-    
+    [GeneratedRegex(@"mul\((\d{1,3}),(\d{1,3})\)|do\(\)|don\'t\(\)")]
+    private static partial Regex Operations();
+
     public int Year => 2024;
     public int Day => 3;
     public string GetName() => "Mull It Over";
@@ -34,7 +34,7 @@ partial class Solution : ISolver
 
     static object PartTwo(string input, Func<TextWriter> getOutputFunction)
     {
-        var ops = input.Matches(@"mul\((\d{1,3}),(\d{1,3})\)|do\(\)|don\'t\(\)")
+        var ops = input.Matches(Operations)
             .Select(GetOp)
             .ToList();
 
@@ -62,11 +62,8 @@ partial class Solution : ISolver
         }
     }
 
-    private class Op();
-    private class Enable() : Op;
-    private class Disable() : Op;
-    private class Multiply(int val) : Op
-    {
-        public int Val { get; } = val;
-    }
+    private record Op;
+    private record Enable : Op;
+    private record Disable : Op;
+    private record Multiply(int Val) : Op;
 }

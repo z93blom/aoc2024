@@ -154,6 +154,12 @@ public static class StringExtensions
         return collection;
     }
 
+    public static IEnumerable<Match> Matches(this string s, Func<Regex> regexGenerator)
+    {
+        var collection = regexGenerator().Matches(s);
+        return collection;
+    }
+
     /// <summary>
     /// Returns all the captured groups for the indicated pattern. Will only return the groups indicated by parenthesis.
     /// </summary>
