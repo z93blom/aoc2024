@@ -9,7 +9,6 @@ namespace AdventOfCode.Solutions.Y2024.Day03;
 
 partial class Solution : ISolver
 {
-
     [GeneratedRegex(@"mul\((\d{1,3}),(\d{1,3})\)|do\(\)|don\'t\(\)")]
     private static partial Regex Operations();
 
@@ -38,15 +37,14 @@ partial class Solution : ISolver
             .Select(GetOp)
             .ToList();
 
-        var result = ops.Aggregate((true, 0), (t, op) =>
+        var result = ops.Aggregate((enabled: true, sum: 0), (x, op) =>
             {
-                var (enabled, sum) = t;
-                var result = (op, enabled) switch
+                var result = (op, x.enabled) switch
                 {
-                    (Enable, _) => (true, sum),
-                    (Disable, _) => (false, sum),
-                    (Multiply m, true) => (true, sum + m.Val),
-                    (Multiply m, false) => (false, sum),
+                    (Enable, _) => (true, x.sum),
+                    (Disable, _) => (false, x.sum),
+                    (Multiply m, true) => (true, x.sum + m.Val),
+                    (Multiply m, false) => (false, x.sum),
                     _ => throw new ArgumentOutOfRangeException()
                 };
                 return result;
