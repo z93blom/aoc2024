@@ -4,6 +4,11 @@ class Theme : ITheme
 {
     public Dictionary<string, int> Override(Dictionary<string, int> themeColors)
     {
+        themeColors["calendar-color-2g0"] = 0x488813;
+        themeColors["calendar-color-2g1"] = 0x4d8b03;
+        themeColors["calendar-color-2g2"] = 0x7fbd39;
+        themeColors["calendar-color-2g3"] = 0x427322;
+        themeColors["calendar-color-2g4"] = 0x01461f;
         themeColors["calendar-color-3b"] = 0x5555bb;
         themeColors["calendar-color-3g"] = 0x00cc00;
         themeColors["calendar-color-3s"] = 0xe3b585;
