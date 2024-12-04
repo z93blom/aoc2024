@@ -7,8 +7,8 @@ static class Solve
 {
     public static Task SolveSpecificDate(string[] args, IServiceProvider services)
     {
-        var year = int.Parse(args[1]);
-        var day = int.Parse(args[2]);
+        var year = int.Parse(args[1][..4]);
+        var day = int.Parse(args[1][5..]);
 
         return SolveSpecificDate(year, day, services);
     }

@@ -6,8 +6,8 @@ static class Update
 {
     public static async Task UpdateSpecificDate(string[] args, IServiceProvider services)
     {
-        var year = int.Parse(args[0]);
-        var day = int.Parse(args[1]);
+        var year = int.Parse(args[1][..4]);
+        var day = int.Parse(args[1][5..]);
 
         await Updater.Update(year, day);
     }
