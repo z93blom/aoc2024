@@ -11,7 +11,8 @@ public class SplashScreenGenerator {
             using AdventOfCode.Framework;
             namespace AdventOfCode.Y{{calendar.Year}};
             
-            class SplashScreenImpl : SplashScreen
+            [RegisterKeyedTransient("{{calendar.Year}}")] partial class SplashScreenImpl { }
+            partial class SplashScreenImpl : SplashScreen
             {
                 public override void Show()
                 {

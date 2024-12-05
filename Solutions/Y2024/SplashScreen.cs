@@ -1,7 +1,8 @@
 using AdventOfCode.Framework;
 namespace AdventOfCode.Y2024;
 
-class SplashScreenImpl : SplashScreen
+[RegisterKeyedTransient("2024")] partial class SplashScreenImpl { }
+partial class SplashScreenImpl : SplashScreen
 {
     public override void Show()
     {
@@ -47,9 +48,9 @@ class SplashScreenImpl : SplashScreen
         Write(0x888888, " 3 ");
         Write(0xffff66, "**\n           ");
         Write(0xcccccc, "|");
-        Write(0x427322, "#");
+        Write(0x4d8b03, "@");
         Write(0x5eabb4, "..");
-        Write(0x427322, "@");
+        Write(0x488813, "@");
         Write(0xe3b585, "'. ~ ");
         Write(0x00cc00, "\" ' ");
         Write(0xe3b585, "~ ");
@@ -67,10 +68,10 @@ class SplashScreenImpl : SplashScreen
         Write(0x888888, " 4 ");
         Write(0xffff66, "**\n           ");
         Write(0xcccccc, "|");
-        Write(0x488813, "_");
-        Write(0x5eabb4, ".~.");
         Write(0x4d8b03, "_");
-        Write(0x488813, "#");
+        Write(0x5eabb4, ".~.");
+        Write(0x427322, "_");
+        Write(0x488813, "@");
         Write(0xe3b585, "'.. ~ ~ ");
         Write(0xffff66, "*");
         Write(0xcccccc, "|        | ");

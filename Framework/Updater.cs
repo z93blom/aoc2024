@@ -62,6 +62,45 @@ public static class Updater
         }
     }
 
+    public static async Task UpdateCalendar(int year)
+    {
+        try
+        {
+            if (!Environment.GetEnvironmentVariables().Contains(SessionEnvironmentName))
+            {
+                throw new Exception($"Specify '{SessionEnvironmentName}' environment variable.");
+            }
+
+            var cookieContainer = new CookieContainer();
+            using var client = new HttpClient(
+                new HttpClientHandler
+                {
+                    CookieContainer = cookieContainer,
+                    AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate
+                });
+
+            var baseAddress = new Uri("https://adventofcode.com/");
+            client.BaseAddress = baseAddress;
+            cookieContainer.Add(baseAddress,
+                new Cookie("session", Environment.GetEnvironmentVariable(SessionEnvironmentName)));
+
+            var calendar = await DownloadCalendar(client, year);
+
+            CreateThemeForYear(calendar);
+            UpdateReadmeForYear(calendar);
+            UpdateSplashScreen(calendar);
+        }
+        catch (HttpRequestException e)
+        {
+            AnsiConsole.WriteException(e);
+            AnsiConsole.MarkupLine($"[darkorange]Is your[/] [maroon]'{SessionEnvironmentName}'[/] [darkorange] environment variable updated to a correct value?[/]");
+        }
+        catch (Exception e)
+        {
+            AnsiConsole.WriteException(e);
+        }
+    }
+
     static async Task<string> Download(HttpClient client, string path)
     {
         Console.WriteLine($"Downloading {client.BaseAddress + path}");

@@ -3,7 +3,7 @@ using Spectre.Console;
 
 namespace AdventOfCode.Framework;
 
-public abstract class SplashScreen
+public abstract class SplashScreen :  ISplashScreen
 {
     readonly FigletFont _font;
 
