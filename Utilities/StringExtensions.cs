@@ -260,7 +260,8 @@ public static class StringExtensions
         {
             for (var x = 0; x < grid.Width; x++)
             {
-                grid[x, y] = f(lines[y][x]);
+                var gridY = yAxisDirection == YAxisDirection.ZeroAtTop ? y : grid.Height - y - 1;
+                grid[x, gridY] = f(lines[y][x]);
             }
         }
 
