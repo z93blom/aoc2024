@@ -24,10 +24,14 @@ partial class Solution : ISolver
     static object PartOne(string input, Func<TextWriter> getOutputFunction)
     {
         var grid = input.ToGrid(YAxisDirection.ZeroAtTop, c => c);
-        var start = grid.Points.First(p => grid[p] == '^');
-        grid[start] = '.';
+        var visited = CalculateVisitPart1(grid, grid.Points.First(p => grid[p] == '^'));
 
-    var direction = CompassDirection.North;
+        return visited.Count;
+    }
+
+    private static HashSet<Point2> CalculateVisitPart1(Grid<char> grid, Point2 start)
+    {
+        var direction = CompassDirection.North;
         HashSet<Point2> visited =
         [
             start
@@ -38,7 +42,7 @@ partial class Solution : ISolver
             var next = guard.InDirection(direction);
             if (!grid.Contains(next))
                 break;
-            if (grid[next] == '.')
+            if (grid[next] == '.' || grid[next] == '^')
             {
                 guard = next;
                 visited.Add(guard);
@@ -55,11 +59,63 @@ partial class Solution : ISolver
             }
         }
 
-        return visited.Count;
+        return visited;
+    }
+
+    private static bool IsLoop(Grid<char> grid, Point2 start)
+    {
+        var direction = CompassDirection.North;
+        HashSet<(Point2, CompassDirection)> visited =
+        [
+            (start, direction)
+        ];
+        var guard = start;
+        while (true)
+        {
+            var next = guard.InDirection(direction);
+            if (!grid.Contains(next))
+                return false;
+            if (grid[next] == '.' || grid[next] == '^')
+            {
+                guard = next;
+                if (!visited.Add((guard, direction)))
+                {
+                    return true;
+                }
+            }
+            else
+            {
+                direction = direction switch
+                {
+                    CompassDirection.North => CompassDirection.East,
+                    CompassDirection.East => CompassDirection.South,
+                    CompassDirection.South => CompassDirection.West,
+                    CompassDirection.West => CompassDirection.North,
+                };
+            }
+        }
+
+        return false;
     }
 
     static object PartTwo(string input, Func<TextWriter> getOutputFunction)
     {
-        return 0;
+        var grid = input.ToGrid(YAxisDirection.ZeroAtTop, c => c);
+        var start = grid.Points.First(p => grid[p] == '^');
+        var possibleObstructionPoints = CalculateVisitPart1(grid, start);
+        possibleObstructionPoints.Remove(start);
+        var loops = 0;
+        foreach (var p in possibleObstructionPoints)
+        {
+            grid[p] = 'O';
+            if (IsLoop(grid, start))
+            {
+                loops++;
+            }
+
+            grid[p] = '.';
+        }
+
+        return loops;
     }
 }
