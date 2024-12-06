@@ -12,6 +12,7 @@ class Theme : ITheme
         themeColors["calendar-color-2u"] = 0x5eabb4;
         themeColors["calendar-color-3b"] = 0x5555bb;
         themeColors["calendar-color-3g"] = 0x00cc00;
+        themeColors["calendar-color-3i"] = 0xa25151;
         themeColors["calendar-color-3s"] = 0xe3b585;
         themeColors["calendar-color-3y"] = 0xffff66;
         themeColors["calendar-color-6b"] = 0x009900;

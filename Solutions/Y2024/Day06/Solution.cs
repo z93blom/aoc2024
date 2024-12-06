@@ -55,6 +55,7 @@ partial class Solution : ISolver
                     CompassDirection.East => CompassDirection.South,
                     CompassDirection.South => CompassDirection.West,
                     CompassDirection.West => CompassDirection.North,
+                    _ => throw new ArgumentOutOfRangeException()
                 };
             }
         }
@@ -91,11 +92,10 @@ partial class Solution : ISolver
                     CompassDirection.East => CompassDirection.South,
                     CompassDirection.South => CompassDirection.West,
                     CompassDirection.West => CompassDirection.North,
+                    _ => throw new ArgumentOutOfRangeException()
                 };
             }
         }
-
-        return false;
     }
 
     static object PartTwo(string input, Func<TextWriter> getOutputFunction)
