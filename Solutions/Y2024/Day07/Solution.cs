@@ -111,7 +111,7 @@ partial class Solution : ISolver
 
         public bool MaybeCorrect()
         {
-            return (Remain.Length > 0 && Remain[0] < TestValue) || Remain.Length > 1;
+            return Remain.Length > 1;
         }
 
         public Test? IsDivisible()
