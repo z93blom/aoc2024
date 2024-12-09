@@ -15,10 +15,11 @@ Specifically:
 
 Outbound calls are throttled (Not considered relevant, since the scripts are only run manually.)
 
-Once inputs are downloaded, they are cached locally (Framework/Updater.cs UpdateInput).
+Once inputs are downloaded, they are cached locally. See [Framework/Updater.cs - UpdateInput method](Framework/Updater.cs).
 
 The User-Agent header in userAgentHeaderFunction() is required to be set in order to fetch
-data (Framework/Updater.cs). It is currently set to point back to this repo and my email address.
+data. See [Framework/Updater.cs - usage of UserAgentEnvironmentName](Framework/Updater.cs).
+It is currently set to point back to this repo and my email address.
 
 # Copyrights
 The source template by https://github.com/encse/adventofcode was MIT at the time of writing/copying.
