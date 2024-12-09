@@ -25,7 +25,7 @@ It is currently set to point back to this repo and my email address.
 The source template by https://github.com/encse/adventofcode was MIT at the time of writing/copying.
 The https://adventofcode.com/2024/about about page states that the inputs and the puzzle are 
 not to be added to the repository. A quick summary of the puzzle is created, and the input files
-are not tracked in the repository. They are 
+are not tracked in the repository.
 
 # Setting the session variables
 The application depends on two environment variables. 
@@ -43,7 +43,6 @@ Command Prompt: set AOCSESSION = ...
 ```
 
 The second environment variable is used to set the UserAgent header for the requests
-according to the request here: https://www.reddit.com/r/adventofcode/comments/z9dhtd/please_include_your_contact_info_in_the_useragent/
 I've used the rquested format: `github.com/z93blom/aoc2024 by <my mail address>`
 
 ```
