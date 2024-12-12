@@ -8,4 +8,8 @@ public readonly record struct Vec2(long X, long Y)
     {
         return $"({X}, {Y})";
     }
+
+    public double Length => Math.Sqrt(X * X + Y * Y);
+
+    public long ManhattanDistance => Math.Abs(X) + Math.Abs(Y);
 }
