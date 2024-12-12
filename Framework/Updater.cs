@@ -239,10 +239,7 @@ public static class Updater
     static void UpdateRefout(Problem problem)
     {
         var file = Path.Combine(Environment.CurrentDirectory, SolverExtensions.RelativeInputDir(problem.Year, problem.Day), "input.refout");
-        if (!File.Exists(file))
-        {
-            WriteFile(file, string.Join("\n", problem.Answers));
-        }
+        WriteFile(file, string.Join("\n", problem.Answers));
     }
 }
     
