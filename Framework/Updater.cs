@@ -32,7 +32,6 @@ public static class Updater
                 Directory.CreateDirectory(dir);
             }
 
-            CreateThemeForYear(calendar);
             UpdateReadmeForYear(calendar);
             UpdateSplashScreen(calendar);
             UpdateReadmeForDay(problem);
@@ -99,7 +98,6 @@ public static class Updater
 
             var calendar = await DownloadCalendar(context,baseAddress, year);
 
-            CreateThemeForYear(calendar);
             UpdateReadmeForYear(calendar);
             UpdateSplashScreen(calendar);
         }
@@ -203,15 +201,6 @@ public static class Updater
         if (!File.Exists(answerFile))
         {
             WriteFile(answerFile, string.Empty);
-        }
-    }
-
-    static void CreateThemeForYear(Calendar calendar)
-    {
-        var file = Path.Combine(Environment.CurrentDirectory, SolverExtensions.WorkingDir(calendar.Year), "Theme.cs");
-        if (!File.Exists(file))
-        {
-            WriteFile(file, ThemeGenerator.Generate(calendar));
         }
     }
 

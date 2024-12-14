@@ -66,19 +66,4 @@ public static class SolverExtensions
 #pragma warning restore CS8603 // Possible null reference return.
 #pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
     }
-
-    public static ITheme? Theme(int year)
-    {
-        var themeType = typeof(SolverExtensions).Assembly.GetTypes()
-             .Where(t => t.GetTypeInfo().IsClass && !t.IsAbstract && typeof(ITheme).IsAssignableFrom(t))
-             .SingleOrDefault(t => Year(t) == year);
-        if (themeType == null)
-        {
-            return null;
-        }
-
-#pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
-        return (ITheme)Activator.CreateInstance(themeType);
-#pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
-    }
 }
