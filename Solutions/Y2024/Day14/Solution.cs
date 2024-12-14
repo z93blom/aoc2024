@@ -90,7 +90,6 @@ partial class Solution : ISolver
             {
                 robotsPerQuadrant[3]++;
             }
-
         }
 
         var safetyFactor = robotsPerQuadrant.Aggregate(1L, (v, product) => v* product);
@@ -99,6 +98,44 @@ partial class Solution : ISolver
 
     static object PartTwo(string input, Func<TextWriter> getOutputFunction)
     {
-        return 0;
+        var gridSize = input.Integers().Chunk(2).Select(e => e.ToArray()).Select(a => new Size(a[0], a[1])).First();
+
+        var robots = input
+            .Longs()
+            .Skip(2)
+            .Chunk(4)
+            .Select(v => v.ToArray())
+            .Select(a => new Robot(new Point2(a[0], a[1], YAxisDirection.ZeroAtTop), new Vec2(a[2], a[3])))
+            .ToList();
+
+        var seconds = 0;
+        while(true)
+        {
+            seconds++;
+            var newPositions = new List<Robot>(robots.Count);
+            foreach (var robot in robots)
+            {
+                newPositions.Add(robot.Move(gridSize));
+            }
+
+            robots = newPositions;
+            if (RobotAreInChristmasTreeFormation(robots, gridSize))
+            {
+                break;
+            }
+        }
+
+        return seconds;
+    }
+
+    private static bool RobotAreInChristmasTreeFormation(List<Robot> robots, Size gridSize)
+    {
+        // Let's just assume that when the robots are each in a unique position, they will form a christmas tree.
+        if (robots.GroupBy(g => g.Location).Any(g => g.Count() > 1))
+        {
+            return false;
+        }
+
+        return true;
     }
 }
