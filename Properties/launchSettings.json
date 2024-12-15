@@ -14,6 +14,10 @@
     "solve 2024-01": {
       "commandName": "Project",
       "commandLineArgs": "solve 2024-01"
+    },
+    "update calendar": {
+      "commandName": "Project",
+      "commandLineArgs": "update calendar"
     }
   }
 }
