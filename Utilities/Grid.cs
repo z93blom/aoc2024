@@ -118,10 +118,10 @@ public class Grid<T>
     
     public string ToString(string delimiter)
     {
-        return ToString(delimiter, t => t?.ToString() ?? string.Empty);
+        return ToString(delimiter, (p, t) => t?.ToString() ?? string.Empty);
     }
 
-    public string ToString(string delimiter, Func<T, string> toString)
+    public string ToString(string delimiter, Func<Point2, T, string> toString)
     {
         var sb = new StringBuilder();
 
@@ -129,7 +129,7 @@ public class Grid<T>
         {
             for (var x = Offset.X; x < Offset.X + Width; x++)
             {
-                sb.Append(toString(this[x, y]));
+                sb.Append(toString(new Point2(x, y, this.YAxisDirection), this[x, y]));
                 if (x < Width - 1)
                 {
                     sb.Append(delimiter);
