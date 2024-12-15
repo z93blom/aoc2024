@@ -1,4 +1,5 @@
-﻿using AngleSharp.Dom;
+﻿using System.Globalization;
+using AngleSharp.Dom;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -95,22 +96,21 @@ public class Calendar
             {
                 continue;
             }
-            var widthSpec = string.IsNullOrEmpty(style["width"]) ?
-                textNode.ParentElement.ParentElement.ComputeCurrentStyle()["width"] : style["width"];
-            if (widthSpec != null)
-            {
-
-                var m = Regex.Match(widthSpec, "[.0-9]+");
-                if (m.Success)
-                {
-                    var width = double.Parse(m.Value) * 1.7;
-                    var c = (int)Math.Round(width - text.Length, MidpointRounding.AwayFromZero);
-                    if (c > 0)
-                    {
-                        text += new string(' ', c);
-                    }
-                }
-            }
+            //var widthSpec = string.IsNullOrEmpty(style["width"]) ?
+            //    textNode.ParentElement.ParentElement.ComputeCurrentStyle()["width"] : style["width"];
+            //if (widthSpec != null)
+            //{
+            //    var m = Regex.Match(widthSpec, "[.0-9]+");
+            //    if (m.Success)
+            //    {
+            //        var width = double.Parse(m.Value, CultureInfo.InvariantCulture) * 1.7;
+            //        var c = (int)Math.Round(width - text.Length, MidpointRounding.AwayFromZero);
+            //        if (c > 0)
+            //        {
+            //            text += new string(' ', c);
+            //        }
+            //    }
+            //}
 
             var i = 0;
             while (i < text.Length)
